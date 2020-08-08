@@ -20,7 +20,7 @@ class TestObject(Base):
         self.id = randint(0, 1000000)
 
     def __repr__(self):
-        return '[TestObject %r]' %self.id
+        return '[TestObject %r]' % self.id
 
     def __iter__(self):
         for param in self.params:

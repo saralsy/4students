@@ -1,5 +1,6 @@
 from flask import Flask
 from server.TestObject import blueprint_TestObject
+from server.User import blueprint_user
 from server import pages
 
 app = Flask(__name__)
@@ -11,7 +12,8 @@ if __name__ == "__main__":
     # Register all the routes to the app
     app.register_blueprint(pages)
     app.register_blueprint(blueprint_TestObject)
-    
+    app.register_blueprint(blueprint_user)
+
     # Startup the connection to the database
     from database import init_db
     init_db()
