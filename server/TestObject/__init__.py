@@ -45,7 +45,7 @@ def readTestObjectRoute():
         return jsonify(**{'message':'Bad Params'}), ErrorCode_BadParams
 
     retrieved_TestObject_list = readTestObject(data['filters'])
-    if retrieved_TestObject_list is None:
+    if retrieved_TestObject_list is None or not retrieved_TestObject_list:
         return jsonify(**{'TestObject':''}), ErrorCode_NotFound
     
     TestObject_json_list = []

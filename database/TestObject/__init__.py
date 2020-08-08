@@ -19,12 +19,12 @@ class TestObject(Base):
         # using a range unlikely to collide with other ids
         self.id = randint(0, 1000000)
 
-   # def __repr__(self):
-     #   return '[TestObject %r]' %self.id
+    def __repr__(self):
+        return '[TestObject %r]' %self.id
 
     def __iter__(self):
         for param in self.params:
-            yield 'test_attribute', self.test_attribute
+            yield param, getattr(self, param)
 
     def __getitem__(self, item):
         object_as_dict = dict(self)
