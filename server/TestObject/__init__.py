@@ -15,7 +15,7 @@ def createTestObjectRoute():
 
 
     # the id parameter does not need checking on object creation
-    params_on_create = TestObject.params
+    params_on_create = list(TestObject.params) # create a copy
     try:
         params_on_create.remove('id')
     except ValueError:
@@ -23,11 +23,13 @@ def createTestObjectRoute():
     if not checkParams(data, *params_on_create):
         return jsonify(**{'message':'Bad Params'}), ErrorCode_BadParams
 
-    new_TestObject = createTestObject(
-        data['test_attribute'],)
-    if new_TestObject is None:
+    newTestObject = TestObject(data['test_attribute'])
+
+    newTestObject = createTestObject(newTestObject)
+
+    if newTestObject is None:
         return jsonify(**{'message':'Bad Params'}), ErrorCode_ServerError
-    return jsonify(**dict(new_TestObject)), ErrorCode_Success
+    return jsonify(**dict(newTestObject)), ErrorCode_Success
 
 
 @blueprint_TestObject.route("/readTestObject", methods = ['POST'])
@@ -42,13 +44,14 @@ def readTestObjectRoute():
     if not checkParam(data, 'filters'):
         return jsonify(**{'message':'Bad Params'}), ErrorCode_BadParams
 
-    retrieved_TestObject_list = readTestObject(**data)
+    retrieved_TestObject_list = readTestObject(data['filters'])
     if retrieved_TestObject_list is None:
-        return jsonify(**{'TestObject':''}), ErrorCode_Success
+        return jsonify(**{'TestObject':''}), ErrorCode_NotFound
     
     TestObject_json_list = []
     try:
         for TestObject in retrieved_TestObject_list:
+            print(dict(TestObject))
             TestObject_json_list.append(dict(TestObject))
         return jsonify(**{'TestObject':TestObject_json_list}), ErrorCode_Success
     except Exception as e:
