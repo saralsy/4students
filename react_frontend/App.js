@@ -10,6 +10,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Home from './components/Home';
 import StudyGroup from './components/StudyGroup'
+import ChatRoom from './components/ChatRoom'
 
 const Stack = createStackNavigator();
 
@@ -35,11 +36,13 @@ export default class App extends Component {
     }
   }
 
+
   render(){
     return (
       <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="ChatRoom" component={ChatRoom} />
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Signup" component={SignUp}/>
         <Stack.Screen name="StudyGroup" component={StudyGroup}/>

@@ -7,19 +7,28 @@ import { render } from "react-dom";
 
 export default class ChatRoom extends React.Component {
     state = {
-        messages = []
-    }
+        messages: []
+    };
 
     get user() {
         //authenticate user from Firebase
-        return {
-            id: null,
-            name: "FakeUser"
+        const data = {}
+        results.get('/users.json').then((response) => {
+            console.log(response.data);
+        });
+        console.log(data);
+        let user = {
+            id:data.id, 
+            name:data.first_name + " " + data.last_name
         };
+        return user;
     }
 
     componentDidMount() {
-        //send message to Firebase
+        //get messages from Firebase
+        results.get('/message.json').then((response) => {
+            messages: GiftedChat.append(messages, response.data.text)
+        });
     }
 
     componentWillUnmount() {
@@ -27,8 +36,15 @@ export default class ChatRoom extends React.Component {
     }
 
     render() {
-        const chat = <GiftedChat messages={this.state.messages} onSend={/* need to send to Firebase */} user={this.user} />;
-
-        return <SafeAreaView>style={{ flex: 1 }}</SafeAreaView>;
+        const chat = <GiftedChat messages={this.state.messages} onSend={messages => {
+            messages.forEach(item => {
+                const message = {
+                    text: item.text,
+                    user: this.user
+                }
+                results.post('/message.json', message);
+            })
+        }} user={this.user} />;
+    return <SafeAreaView style={{ flex: 1 }}>{chat}</SafeAreaView>;
     }
 }

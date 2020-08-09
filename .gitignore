@@ -1,4 +1,4 @@
-/node_modules
+react_frontend/node_modules
 .expo/*
 npm-debug.*
 *.jks
@@ -14,3 +14,4 @@ web-build/
 *.pyc
 venv
 .idea
+node_modules
