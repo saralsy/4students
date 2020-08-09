@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "stu-gru",
+    "slug": "stu-gru",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,6 +21,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A platform for students to meet like-minded individuals and join online study groups",
+    "githubUrl": "https://github.com/saralsy/4students"
   }
 }

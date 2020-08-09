@@ -4,10 +4,12 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, TextInput, TouchableOpa
 
 const GroupDisplay = (props) => {
     return (
-        <View style={styles.container}>
+        <View >
+            <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('ChatRoom')}>
+                <Text style={styles.groupTitle}>{props.groupName}</Text>
+                <Text style={styles.numMember}>{props.groupNumber}</Text>
             
-            <Text style={styles.groupTitle}>{props.groupName}</Text>
-            <Text style={styles.numMember}>{props.groupNumber}</Text>
+            </TouchableOpacity>
             
 
         </View>

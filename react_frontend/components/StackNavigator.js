@@ -8,6 +8,7 @@ import Home from './Home'
 import SignUp from './SignUp'
 import Login from './Login'
 import About from './About'
+import ChatRoom from './ChatRoom'
 
 const Stack = createStackNavigator();
 
@@ -31,9 +32,9 @@ export function StackNavigator() {
           name="Home"
           component={Home}
           options={{ title: 'Landing Page' }}
-        />
+        /> 
         <Stack.Screen
-          name="About"
+          name="About" 
           component={About}
           initialParams={{ user: 'me' }}
           options={{ headerTitle: props => <LogoTitle {...props} /> }}
@@ -47,6 +48,12 @@ export function StackNavigator() {
         <Stack.Screen
           name="Join"
           component={SignUp}
+          initialParams={{ user: 'me' }}
+          options={{ headerTitle: props => <LogoTitle {...props} /> }}
+        />
+        <Stack.Screen
+          name="ChatRoom"
+          component={ChatRoom}
           initialParams={{ user: 'me' }}
           options={{ headerTitle: props => <LogoTitle {...props} /> }}
         />

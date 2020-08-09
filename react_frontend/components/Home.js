@@ -35,7 +35,7 @@ export default class Home extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About Us'>
+          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About'>
             <Text style={styles.buttonText}>About Us</Text>
           </TouchableOpacity>
 

@@ -18,7 +18,7 @@ export default class Login extends Component {
     handleUsername(val){this.setState({username:val})}
     handlePassword(val){this.setState({password:val})}
     
-    componentDidMount(){
+    /*componentDidMount(){
         results.get('/users.json',{
             params:{
                 username: this.username,
@@ -29,7 +29,7 @@ export default class Login extends Component {
             console.log(response.data);
             this.props.navigation.navigate('StudyGroup')
 
-            /* 
+            
             const fetchedResults = [];
             for(let key in response.data){
                 fetchedResults.unshift({
@@ -38,18 +38,11 @@ export default class Login extends Component {
                 })
             }
             this.setState({results:fetchedResults})
-            
-            */
-            
-
         })
         .catch(err => {
             console.log(err)
         })
-            
-
-           
-    }
+    } */
 
     checkUserExists = (e) =>{
         e.preventDefault();
