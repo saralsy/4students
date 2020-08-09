@@ -9,6 +9,7 @@ const {width, height} = Dimensions.get('window');
 import SignUp from './SignUp';
 import Login from './Login';
 import About from './About';
+import ChatRoom from './ChatRoom'
 
 
 
@@ -35,8 +36,12 @@ export default class Home extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About'>
-            <Text style={styles.buttonText}>About Us</Text>
+          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About Us'>
+            <Text style={styles.buttonText}>About</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("ChatRoom")} title='Chat Room'>
+            <Text style={styles.buttonText}>Chat Room</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("Login")} title='Log In'>
@@ -52,16 +57,21 @@ export default class Home extends Component {
           </TouchableOpacity>
         </View>
         
-        <View>
-          <Text style={styles.title1}>ENGAGE</Text>
-          <Text style={styles.title2}>FOCUS</Text>
-          <Text style={styles.title3}>CONNECT</Text>
+        <View style={{flex: 3, flexDirection: 'row'}}>
+          <View>
+            <Text style={styles.title1}>ENGAGE</Text>
+            <Text style={styles.title2}>FOCUS</Text>
+            <Text style={styles.title3}>CONNECT</Text>
+          </View>
+          <View>
+            <ImageBackground source={require('../assets/stugru_logo_lowRes.png')} style={styles.logo} />
+          </View>
 
           <StatusBar style="auto" />
         </View>
 
         <View>
-          <ImageBackground source={require('../assets/stugru_logo_lowRes.png')} style={styles.logo} />
+          
         </View>
         
       </ScrollView>
@@ -155,8 +165,11 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    width: 300,
-    margin: 50,
+    width: 640,
+    height: 193,
+    margin: 170,
+    alignItems:'flex-end',
+    justifyContent:'flex-end',
   }
   // font that can be used: Avenir, Avenir Next, Avenir-Heavy, Avenir-Medium, Avenir-Light
 });

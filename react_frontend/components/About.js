@@ -16,8 +16,8 @@ export default class About extends Component {
         return (
           <ScrollView style={styles.container}>
             <View style={styles.header}>
-              <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About'>
-                <Text style={styles.buttonText}>About Us</Text>
+              <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About Us'>
+                <Text style={styles.buttonText}>About</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("Login")} title='Log In'>
                 <Text style={styles.buttonText}>Log In</Text>
@@ -33,8 +33,7 @@ export default class About extends Component {
             </View>
 
             <View>
-              <Text>Test</Text>
-                
+                <ImageBackground source='../assets/stugru_logo_lowRes' />
             </View>
             
           </ScrollView>
