@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import results from './results'
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -9,15 +10,64 @@ export default class Login extends Component {
         super(props);
         this.state={
             username:'',
-            password:''
+            password:'',
+            user: null,
+            initializing: true,
         };
     }
     handleUsername(val){this.setState({username:val})}
     handlePassword(val){this.setState({password:val})}
+    
+    componentDidMount(){
+        results.get('/users.json',{
+            params:{
+                username: this.username,
+                password: this.password
+            }
+        })
+        .then(response=>{
+            console.log(response.data);
+            this.props.navigation.navigate('StudyGroup')
+
+            /* 
+            const fetchedResults = [];
+            for(let key in response.data){
+                fetchedResults.unshift({
+                    ...response.data[key],
+                    id:key
+                })
+            }
+            this.setState({results:fetchedResults})
+            
+            */
+            
+
+        })
+        .catch(err => {
+            console.log(err)
+        })
+            
+
+           
+    }
+
+    checkUserExists = (e) =>{
+        e.preventDefault();
+        const Data = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        results.post('/users.json', Data).then(response => {
+            this.props.navigation.navigate("StudyGroup")
+        })
+
+    }
+    
 
     render(){
         return(
         <ScrollView style={styles.container}>
+            
         
         
         <View style={{flex:3, alignItems:'center', justifyContent:'center'}}>

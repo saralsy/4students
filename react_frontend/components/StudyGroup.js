@@ -3,6 +3,7 @@ import { Modal, StyleSheet, Text, View, Dimensions, ScrollView, TextInput, Touch
 import Popup from "reactjs-popup";
 import { FontAwesome } from '@expo/vector-icons';
 import results from './results';
+import GroupDisplay from './GroupDisplay';
 
 const {width, height} = Dimensions.get('window');
 
@@ -15,6 +16,7 @@ export default class StudyGroup extends Component {
             groupName:'',
             groupNumber:0,
             modalVisible: false,
+            groups:[]
 
         };
         this.toggleModal = this.toggleModal.bind(this);
@@ -33,8 +35,25 @@ export default class StudyGroup extends Component {
         }
         results.post('/groups.json', Data).then(response => {
             alert("You have added successfully")
-            this.props.navigation.navigate("Home")
         })
+    }
+
+    componentDidMount(){
+        results.get('/groups.json')
+        .then(response=> {
+            console.log(response.data);
+            const fetchedResults = [];
+            for(let key in response.data){
+                fetchedResults.unshift({
+                    ...response.data[key],
+                    id:key
+                })
+            }
+            this.setState({groups: fetchedResults})
+            
+            
+        })
+
     }
 
     render(){
@@ -57,7 +76,7 @@ export default class StudyGroup extends Component {
             
 
             <Modal animationType = "slide" transparent = {false}
-               visible = {false}
+               visible = {this.state.visible}
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
                <View styles={styles.centeredView}>
                 <View style = {styles.modalView}>
@@ -82,6 +101,18 @@ export default class StudyGroup extends Component {
                </View>
                
             </Modal>
+
+            <View>
+                <Text style={styles.buttonText}>Find your study groups</Text>
+                {this.state.groups.map((results) => 
+                    <GroupDisplay 
+                        key={results.id}
+                        groupName={results.groupName}
+                        groupNumber={results.groupNumber}
+                    
+                    />
+                )}
+            </View>
 
             
 
