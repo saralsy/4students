@@ -7,11 +7,29 @@ import {
   TouchableHighlight,
   View
 } from "react-native";
+import results from './results'
 
 export default class Modal extends Component {
-  state = {
-    modalVisible: false
-  };
+    contructor(props){
+        super(props);
+        this.state={
+            modalVisible: false,
+            groupName: '',
+        }
+    }
+
+  postGroupHandler = (e) => {
+    e.preventDefault();
+    const Data = {
+        groupName: this.state.groupName,
+        groupNumber: 10,
+    }
+    results.post('/groups.json', Data).then(response => {
+        alert("You have added successfully")
+        this.props.navigation.navigate("Home")
+    })
+
+}
 
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
@@ -22,7 +40,6 @@ export default class Modal extends Component {
     return (
       <View style={styles.centeredView}>
         <Modal
-          animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
@@ -31,7 +48,19 @@ export default class Modal extends Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+              <Text style={styles.modalText}>Create a New Study Group!</Text>
+              <TextInput
+                onChange={(e)=>this.setState({groupName:e.target.value})}
+                value={this.state.groupName}
+                placeholder="Enter a Group Name"
+                style={[styles.input,{width:285, marginRight:10}]}></TextInput>
+
+              <TouchableHighlight
+                style={styles.button2}
+                onPress={this.postGroupHandler}
+              >
+                <Text style={styles.textStyle}>Create</Text>
+              </TouchableHighlight>
 
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
@@ -39,7 +68,7 @@ export default class Modal extends Component {
                   this.setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Cancel</Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -64,6 +93,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22
+  },
+  input:{
+    flex:1,
+    borderColor: '#F28482',
+    borderRadius:15,
+    borderWidth: 1,
+    width: 600,
+    height: 60,
+    fontSize: 20,
+    fontFamily: 'Avenir-Light',
+    padding: 10,
+    fontColor: '#A1A1A1'
+
+},
+button2:{
+    width: 100,
+    fontSize:30,
+    fontFamily: 'Avenir-Medium',
+    fontColor:'#000000',
+    backgroundColor:'#FFCA74',
+    borderRadius:15,
+    padding: 10,
+    margin:20,
+    textAlign: 'center'
   },
   modalView: {
     margin: 20,

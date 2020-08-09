@@ -42,7 +42,7 @@ export default class Home extends Component {
             <Text style={styles.buttonText}>Join</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button3} onPress={()=> this.props.navigation.navigate(Login)} title='Note App'>
+          <TouchableOpacity style={styles.button3} onPress={()=> this.props.navigation.navigate("StudyGroup")} title='Note App'>
             <Text style={styles.buttonText}>Note App</Text>
           </TouchableOpacity>
         </View>
