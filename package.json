@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^8.3.0",
     "expo": "~38.0.8",
     "expo-image-manipulator": "^8.2.1",
     "expo-image-picker": "~8.3.0",
@@ -15,7 +16,8 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "simple-swizzle": "^0.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

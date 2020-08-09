@@ -26,9 +26,10 @@ export default class SignUp extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
         }
         results.post('/users.json', Data).then(response => {
+            
             this.props.navigation.navigate("StudyGroup")
         })
 
