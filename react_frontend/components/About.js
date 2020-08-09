@@ -31,6 +31,10 @@ export default class About extends Component {
                 <Text style={styles.buttonText}>Note App</Text>
               </TouchableOpacity>
             </View>
+
+            <View>
+                
+            </View>
             
           </ScrollView>
         );
