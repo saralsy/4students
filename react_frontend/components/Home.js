@@ -35,15 +35,15 @@ export default class Home extends Component {
       <ScrollView style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("Login")} title='Log In'>
-            <Text>Log In</Text>
+            <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button2} onPress={()=> this.props.navigation.navigate("Signup")} title='Join'>
-            <Text>Join</Text>
+            <Text style={styles.buttonText}>Join</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button3} onPress={()=> this.props.navigation.navigate(Login)} title='Note App'>
-            <Text>Note App</Text>
+            <Text style={styles.buttonText}>Note App</Text>
           </TouchableOpacity>
         </View>
         
@@ -103,12 +103,19 @@ const styles = StyleSheet.create({
     fontFamily:'Avenir-Heavy',
     color: '#FFCA74'
   },
+  buttonText:{
+    fontSize:20,
+    fontFamily: 'Avenir-Medium',
+    textAlign:'flex-end'
+  },
   button1:{
     width: 84,
     fontSize:30,
     fontFamily: 'Avenir-Medium',
     fontColor:'#000000',
     padding: 10,
+    margin: 20,
+    textAlign: 'center'
     
 
   },
@@ -120,15 +127,22 @@ const styles = StyleSheet.create({
     backgroundColor:'#FFCA74',
     borderRadius:15,
     padding: 10,
+    margin:20,
     textAlign: 'center'
   },
   button3:{
     fontSize:30,
     fontFamily: 'Avenir-Medium',
     fontColor:'#000000',
-    padding: 10,
-    textAlign: 'center',
+    
+    textAlign: 'justify',
     width: 100,
+    textAlign: 'center',
+    alignItems: 'center',
+    alignContents: 'center',
+    paddingBottom:8,
+    
+    margin:20
 
   }
   // font that can be used: Avenir, Avenir Next, Avenir-Heavy, Avenir-Medium, Avenir-Light

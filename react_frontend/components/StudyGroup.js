@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import Popup from "reactjs-popup";
+
+import results from './results'
 
 const {width, height} = Dimensions.get('window');
 
@@ -8,11 +11,27 @@ export default class StudyGroup extends Component {
         super(props);
         this.state={
             username:'',
-            password:''
+            password:'',
+            groupName:'',
+            groupNumber:0,
+
         };
     }
     handleUsername(val){this.setState({username:val})}
     handlePassword(val){this.setState({password:val})}
+
+    postGroupHandler = (e) => {
+        e.preventDefault();
+        const Data = {
+            groupName: this.state.groupName,
+            groupNumber: this.state.groupNumber,
+        }
+        results.post('/groups.json', Data).then(response => {
+            alert("You have added successfully")
+            this.props.navigation.navigate("Home")
+        })
+
+    }
 
     render(){
         return(
@@ -20,7 +39,14 @@ export default class StudyGroup extends Component {
         
         
         <View style={{flex:3, alignItems:'center', justifyContent:'center'}}>
-          <Text style={styles.title1}>Welcome Back!</Text>
+          <View>
+            <Text style={styles.title1}>Study Groups</Text>
+            <TouchableOpacity onPress={this.addGroup}>
+                <Text>+</Text>
+            </TouchableOpacity>
+
+          </View>
+          
           <View style={{padding:20}}> 
             <TextInput
             onEndEditing={this.handleUsername}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import results from './results';
 
 const {width, height} = Dimensions.get('window');
 
@@ -12,11 +13,27 @@ export default class SignUp extends Component {
             username:'',
             password:''
         };
+       
     }
     handleFirstName(val){this.setState({firstName:val})}
     handleLastName(val){this.setState({lastName:val})}
     handleUsername(val){this.setState({username:val})}
     handlePassword(val){this.setState({password:val})}
+    
+    postDataHandler = (e) => {
+        e.preventDefault();
+        const Data = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            username: this.state.username,
+            password: this.state.password
+        }
+        results.post('/users.json', Data).then(response => {
+            this.props.navigation.navigate("StudyGroup")
+        })
+
+    }
+
 
     render(){
         return(
@@ -27,32 +44,34 @@ export default class SignUp extends Component {
           <Text style={styles.title1}>Join Us!</Text>
           <View style={{padding:20, flexDirection:'row'}}> 
             <TextInput
-            onEndEditing={this.handleFirstName}
+            onChange={(e)=>this.setState({firstName:e.target.value})}
             value={this.state.firstName}
             placeholder="First Name"
             style={[styles.input,{width:285, marginRight:10}]}></TextInput>
             <TextInput
-            onEndEditing={this.handleFirstName}
-            value={this.state.firstName}
+            
+            value={this.state.lastName}
+            onChange={(e)=>this.setState({lastName:e.target.value})}
             placeholder="Last Name"
             style={[styles.input, {width: 285, marginLeft:10}]}></TextInput>
 
           </View>
           <View style={{padding:20}}>
           <TextInput
-            onEndEditing={this.handleUsername}
+            
             value={this.state.username}
+            onChange={(e)=>this.setState({username:e.target.value})}
             placeholder="Username"
             style={styles.input}></TextInput>
           </View>
           <View style={{padding:20}}>
           <TextInput
-            onEndEditing={this.handlePassword}
             value={this.state.password}
+            onChange={(e)=>this.setState({password:e.target.value})}
             placeholder="Password"
             style={styles.input}></TextInput>
           </View>
-          <TouchableOpacity style={styles.button2} onPress={()=> this.props.navigation.navigate("StudyGroup")} title='StudyGroup'>
+          <TouchableOpacity style={styles.button2} onPress={this.postDataHandler} title='StudyGroup'>
             <Text>Join</Text>
           </TouchableOpacity>
         </View>
