@@ -9,6 +9,7 @@ const {width, height} = Dimensions.get('window');
 import SignUp from './SignUp';
 import Login from './Login';
 import About from './About';
+import ChatRoom from './ChatRoom'
 
 
 
@@ -37,6 +38,10 @@ export default class Home extends Component {
         <View style={styles.header}>
           <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About Us'>
             <Text style={styles.buttonText}>About Us</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("ChatRoom")} title='Chat Room'>
+            <Text style={styles.buttonText}>Chat Room</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("Login")} title='Log In'>
