@@ -3,11 +3,20 @@ import React, { Component } from 'react';
 import {Dimensions, Text ,View, StyleSheet , ScrollView, ImageBackground, TextInput, TouchableOpacity, Button } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const {width, height} = Dimensions.get('window');
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import Home from './components/Home';
+import StudyGroup from './components/StudyGroup'
+
+const Stack = createStackNavigator();
+
 
 
 export default class App extends Component {
+
 
   state ={
     firstName:'',
@@ -29,31 +38,13 @@ export default class App extends Component {
   render(){
     return (
       <NavigationContainer>
-      <ScrollView style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate(LogIn)} title='Log In'>
-            <Text>Log In</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button2} onPress={()=> this.props.navigation.navigate(Join)} title='Join'>
-            <Text>Join</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button3} onPress={()=> this.props.navigation.navigate(NoteApp)} title='Note App'>
-            <Text>Note App</Text>
-          </TouchableOpacity>
-        </View>
-        
-        <View>
-          <Text style={styles.title1}>ENGAGE</Text>
-          <Text style={styles.title2}>FOCUS</Text>
-          <Text style={styles.title3}>CONNECT</Text>
-          
-          <StatusBar style="auto" />
-        </View>
-        
-      </ScrollView>
-      </NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Login" component={Login}/>
+        <Stack.Screen name="Signup" component={SignUp}/>
+        <Stack.Screen name="StudyGroup" component={StudyGroup}/>
+      </Stack.Navigator>
+    </NavigationContainer>
     );
 
   }
