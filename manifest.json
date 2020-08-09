@@ -1,0 +1,27 @@
+{
+  "background_color": "#ffffff",
+  "description": "A platform for students to meet like-minded individuals and join online study groups",
+  "display": "standalone",
+  "lang": "en",
+  "name": "stu-gru",
+  "short_name": "stu-gru",
+  "start_url": "/?utm_source=web_app_manifest",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/4students/pwa/chrome-icon/chrome-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/4students/pwa/chrome-icon/chrome-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/4students/pwa/chrome-icon/chrome-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
