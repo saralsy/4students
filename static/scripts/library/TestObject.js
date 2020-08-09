@@ -50,7 +50,7 @@ class TestObjectLib {
         let result_stream = await fetch(`/readTestObject`, {
             method: 'POST',
             headers: {"Content-Type":"application/json"},
-            body: JSON.stringify("appToken":"63861a80-40b8-45ab-b27e-bd2f8439d75b", "filters":attributes_dict)
+            body: JSON.stringify({"appToken":"63861a80-40b8-45ab-b27e-bd2f8439d75b", "filters":attributes_dict})
         })
         .catch((err) => {
             console.log('Error: ', err);

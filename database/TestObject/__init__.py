@@ -4,12 +4,12 @@ from random import randint
 
 class TestObject(Base):
 
-    params = ['test_attribute',]
+    params = ['id', 'test_attribute']
 
     __tablename__ = "TestObject"
-    
-    test_attribute = Column(Integer, primary_key=False, nullable=True, unique=True)
+
     id = Column(Integer, primary_key=True, nullable=False, unique=True)
+    test_attribute = Column(Integer, primary_key=False, nullable=True)
 
     def __init__(self, test_attribute):
         
@@ -20,13 +20,13 @@ class TestObject(Base):
         self.id = randint(0, 1000000)
 
     def __repr__(self):
-        return '[TestObject %r]' %self.id
+        return '[TestObject %r]' % self.id
 
     def __iter__(self):
-        
-        yield 'test_attribute', self.test_attribute
+        for param in self.params:
+            yield param, getattr(self, param)
 
-    def __getitem(self, item):
+    def __getitem__(self, item):
         object_as_dict = dict(self)
         if item in object_as_dict:
             return object_as_dict[item]
@@ -38,12 +38,11 @@ def isValidTestObject(obj_id):
     except Exception:
         return False
 
-def createTestObject(*args):
-    if not isValidTestObject(args[0]):
-        new_obj = TestObject(*args)
-        db_session.add(new_obj)
+def createTestObject(obj):
+    if not isValidTestObject(obj.id):
+        db_session.add(obj)
         db_session.commit()
-        return new_obj
+        return obj
     return dict() # an empty dict in case you are using **{} on this function's output
 
 def readTestObject(queries):
@@ -53,7 +52,7 @@ def readTestObject(queries):
         for attr, val in queries.items():
             filter_list.append(getattr(TestObject, attr) == str(val))
         TestObject_list = TestObject.query.filter(*filter_list).all()
-        return TestObject_list if len(TestObject_list) > 1 else TestObject_list[0]
+        return TestObject_list
     except Exception as e:
         print("An exception occurred with the following details:\n{}".format(str(e)))
         print("Attribute: {}\tValue: {}\n".format(attr, val))
