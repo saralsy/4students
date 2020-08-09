@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-node_modules/**/*
+/node_modules
 .expo/*
 npm-debug.*
 *.jks
@@ -12,8 +11,7 @@ web-build/
 
 # macOS
 .DS_Store
-=======
 *.pyc
 venv
 .idea
->>>>>>> b544070312bc97fd6d789a5cdf831c05b5df6973
+
