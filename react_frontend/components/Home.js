@@ -7,7 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const {width, height} = Dimensions.get('window');
 import SignUp from './SignUp';
-import Login from './Login'
+import Login from './Login';
+import About from './About';
 
 
 
@@ -28,12 +29,16 @@ export default class Home extends Component {
     } else {
       alert("You are registered")
     }
-  }
+  } 
 
   render(){
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>
+          <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("About")} title='About Us'>
+            <Text style={styles.buttonText}>About Us</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity style={styles.button1} onPress={()=> this.props.navigation.navigate("Login")} title='Log In'>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
@@ -51,8 +56,12 @@ export default class Home extends Component {
           <Text style={styles.title1}>ENGAGE</Text>
           <Text style={styles.title2}>FOCUS</Text>
           <Text style={styles.title3}>CONNECT</Text>
-          
+
           <StatusBar style="auto" />
+        </View>
+
+        <View>
+          <ImageBackground source={require('../assets/stugru_logo_lowRes.png')} style={styles.logo} />
         </View>
         
       </ScrollView>
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems:'flex-end',
     justifyContent:'flex-end',
-    paddingRight: 150,
+    paddingRight: 50,
     start:0,
   },
   title1:{
@@ -93,7 +102,7 @@ const styles = StyleSheet.create({
     paddingLeft: 150,
     textAlign: "flex-start",
     fontFamily:'Avenir-Heavy',
-    color:' #92C8BB',
+    color:'#92C8BB',
     paddingBottom: 25,
   },
   title3:{
@@ -143,7 +152,11 @@ const styles = StyleSheet.create({
     paddingBottom:8,
     
     margin:20
+  },
 
+  logo:{
+    width: 300,
+    margin: 50,
   }
   // font that can be used: Avenir, Avenir Next, Avenir-Heavy, Avenir-Medium, Avenir-Light
 });
