@@ -1,8 +1,9 @@
 import React from "react";
-import {Platform, KeyboardAvoidingView, SafeAreaView} from "react-native";
+import {Platform, KeyboardAvoidingView, SafeAreaView, Dimensions, StyleSheet} from "react-native";
 import {GiftedChat} from "react-native-gifted-chat";
 import results from "./results";
 import { render } from "react-dom";
+const {width, height} = Dimensions.get('window');
 
 
 export default class ChatRoom extends React.Component {
